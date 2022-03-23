@@ -14,7 +14,7 @@ class LegendsAPI {
     Uri requestURL = Uri(
         scheme: scheme,
         host: url,
-        path: 'player-stats-all/' + region + "/" + name + "/60/60");
+        path: 'player-stats-all/' + region + "/" + name + "/65/65");
 
     var response = await http.get(requestURL, headers: headers);
     var statusCode = response.statusCode;
@@ -24,7 +24,7 @@ class LegendsAPI {
     if (statusCode == 200) {
       return PlayerStatus.fromJson(json);
     } else {
-      return Future.error(json["detail"]);
+      return Future.error("error");
     }
   }
 }

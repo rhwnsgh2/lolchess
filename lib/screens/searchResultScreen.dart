@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lolchess/model/playerStatus.dart';
 import 'package:lolchess/model/serachResultModel.dart';
+import 'package:lolchess/utils/playerStatistic.dart';
 
 class SearchResult extends StatefulWidget {
   String region, name;
@@ -27,7 +28,8 @@ class SearchResultState extends State<SearchResult> {
                 // var metaValue = snapshot.data?.matches.reduce(
                 //     (value, element) => value + element.ratings.meta);
                 print(snapshot.data?.matches?[0].ratings?.meta);
-                print('this');
+                print(PlayerStatistic(
+                    playerStatus: snapshot.data as PlayerStatus));
 
                 return Text("데이터");
               } else if (snapshot.hasError) {
