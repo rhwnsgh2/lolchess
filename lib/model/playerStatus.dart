@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:lolchess/model/patchVersion.dart';
+
 class PlayerStatus {
   List<Matches>? matches;
   PlayerInfo? playerInfo;
@@ -66,7 +69,7 @@ class QueueSeasonStats {
       this.season = key;
       Map<String, dynamic> seasonStats = Map<String, dynamic>.from(value);
       this.games = seasonStats["games"];
-      this.avgPlace = seasonStats["avgPlace"];
+      this.avgPlace = seasonStats["avgPlace"] + 0.0;
       this.top4 = seasonStats["top4"];
       this.win = seasonStats["win"];
       this.topCarry = seasonStats["topCarry"];
@@ -104,7 +107,7 @@ class SeasonStats {
 
   SeasonStats.fromJson(Map<String, dynamic> json) {
     games = json["games"];
-    avgPlace = json["avgPlace"];
+    avgPlace = json["avgPlace"] + 0.0;
     top4 = json["top4"];
     win = json["win"];
     topCarry = json["topCarry"];
@@ -133,6 +136,17 @@ class PlayerInfo {
   List<dynamic>? localRank;
   List<dynamic>? globalRank;
   List<dynamic>? hyperrollLeague;
+
+  Image getImage() {
+    String version = Version().getVersion();
+
+    String url = "https://ddragon.leagueoflegends.com/cdn/" +
+        version +
+        '/img/profileicon/' +
+        profileIconId.toString() +
+        '.png';
+    return Image.network(url, fit: BoxFit.contain);
+  }
 
   PlayerInfo(
       {this.tier,
